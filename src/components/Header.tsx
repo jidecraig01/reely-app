@@ -18,18 +18,14 @@ export default function Header({ view, onViewChange, watchlistCount, mediaType, 
       className="sticky top-0 z-50 bg-ink/90 backdrop-blur-md border-b border-velvetLight/30 bg-cover bg-center"
       style={{ backgroundImage: "url('/magnific_a-modern-website-header-b_vQqYpIMa47.png')" }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 flex items-center justify-between bg-transparent text-screen">
-        <button
-          type="button"
-          onClick={() => onViewChange('discover')}
-          aria-label="REELY home"
-          className="w-40 sm:w-64 shrink-0 self-stretch"
-        />
-        <div className="flex flex-col items-end gap-2">
-          <button onClick={handleSignOut} className="btn-ghost text-sm">
-            Sign Out
-          </button>
-
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 flex items-start justify-between bg-transparent text-screen">
+        <div className="flex flex-col gap-1 shrink-0">
+          <button
+            type="button"
+            onClick={() => onViewChange('discover')}
+            aria-label="REELY home"
+            className="w-40 sm:w-64 self-stretch"
+          />
           <nav className="flex gap-1">
             <button
               onClick={() => onViewChange('discover')}
@@ -53,6 +49,11 @@ export default function Header({ view, onViewChange, watchlistCount, mediaType, 
               )}
             </button>
           </nav>
+        </div>
+        <div className="flex flex-col items-end gap-2">
+          <button onClick={handleSignOut} className="btn-ghost text-sm">
+            Sign Out
+          </button>
 
           {view === 'discover' && (
             <div className="flex gap-1 bg-velvet/60 rounded-lg p-1">
