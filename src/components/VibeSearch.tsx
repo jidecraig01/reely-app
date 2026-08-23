@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { supabase } from '../supabaseClient';
-import { discoverMovies, TMDB_GENRES } from '../tmdb';
-import type { Movie } from '../types';
+import { discoverMedia } from '../tmdb';
+import type { MediaItem, MediaType } from '../types';
 
 interface VibeSearchProps {
-  onResults: (movies: Movie[], query: string) => void;
+  onResults: (movies: MediaItem[], query: string) => void;
   onLoading: (loading: boolean) => void;
+  mediaType: MediaType;
 }
 
-export default function VibeSearch({ onResults, onLoading }: VibeSearchProps) {
+export default function VibeSearch({ onResults, onLoading, mediaType }: VibeSearchProps) {
   const [query, setQuery] = useState('');
   const [error, setError] = useState<string | null>(null);
 
@@ -39,15 +40,32 @@ export default function VibeSearch({ onResults, onLoading }: VibeSearchProps) {
       }
 
       const filters = await res.json();
-      const movies = await discoverMovies({
-        genre_ids: filters.genre_ids,
-        min_rating: filters.min_rating,
-        min_year: filters.min_year,
-        max_year: filters.max_year,
-        sort_by: filters.sort_by,
-      });
 
-      onResults(movies, query);
+      // Determine which media types to search
+      const requestedTypes: MediaType[] = Array.isArray(filters.media_types) && filters.media_types.length > 0
+        ? filters.media_types
+        : [mediaType];
+
+      // Fetch results for each requested media type (up to 2 pages each for ~30 results)
+      const allResults: MediaItem[] = [];
+      for (const mt of requestedTypes) {
+        const page1 = await discoverMedia({
+          genre_ids: filters.genre_ids,
+          min_rating: filters.min_rating,
+          min_year: filters.min_year,
+          max_year: filters.max_year,
+          sort_by: filters.sort_by,
+          media_type: mt,
+          page: 1,
+        });
+        allResults.push(...page1);
+      }
+
+      // Sort by popularity (vote_average if requested) and take top 30
+      allResults.sort((a, b) => b.vote_average - a.vote_average);
+      const results = allResults.slice(0, 30);
+
+      onResults(results, query);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Search failed. Try again.');
     } finally {

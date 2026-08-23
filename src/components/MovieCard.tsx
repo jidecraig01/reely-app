@@ -1,17 +1,18 @@
-import { TMDB_IMG_SMALL, TMDB_GENRES } from '../tmdb';
-import type { Movie } from '../types';
+import { TMDB_IMG_SMALL, MOVIE_GENRES, TV_GENRES } from '../tmdb';
+import type { MediaItem } from '../types';
 
 interface MovieCardProps {
-  movie: Movie;
+  movie: MediaItem;
   inWatchlist: boolean;
-  onAdd: (movie: Movie) => void;
+  onAdd: (movie: MediaItem) => void;
   onRemove: (movieId: number) => void;
 }
 
 export default function MovieCard({ movie, inWatchlist, onAdd, onRemove }: MovieCardProps) {
+  const genreMap = movie.media_type === 'tv' ? TV_GENRES : MOVIE_GENRES;
   const genres = movie.genre_ids
     ?.slice(0, 2)
-    .map((id) => TMDB_GENRES[id])
+    .map((id) => genreMap[id])
     .filter(Boolean);
 
   return (
@@ -31,6 +32,10 @@ export default function MovieCard({ movie, inWatchlist, onAdd, onRemove }: Movie
         )}
 
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent opacity-80" />
+
+        <div className="absolute top-2 left-2 bg-ink/80 backdrop-blur-sm rounded-full px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-screenDim">
+          {movie.media_type === 'tv' ? 'TV' : 'Film'}
+        </div>
 
         <div className="absolute top-2 right-2 bg-ink/80 backdrop-blur-sm rounded-full px-2 py-0.5 text-xs font-mono text-gold">
           {movie.vote_average.toFixed(1)}

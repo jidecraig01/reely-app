@@ -5,9 +5,11 @@ interface HeaderProps {
   view: 'discover' | 'watchlist';
   onViewChange: (view: 'discover' | 'watchlist') => void;
   watchlistCount: number;
+  mediaType: 'movie' | 'tv';
+  onMediaTypeChange: (type: 'movie' | 'tv') => void;
 }
 
-export default function Header({ view, onViewChange, watchlistCount }: HeaderProps) {
+export default function Header({ view, onViewChange, watchlistCount, mediaType, onMediaTypeChange }: HeaderProps) {
   async function handleSignOut() {
     await supabase.auth.signOut();
   }
@@ -43,9 +45,32 @@ export default function Header({ view, onViewChange, watchlistCount }: HeaderPro
           </nav>
         </div>
 
-        <button onClick={handleSignOut} className="btn-ghost text-sm">
-          Sign Out
-        </button>
+        <div className="flex items-center gap-4">
+          {view === 'discover' && (
+            <div className="flex gap-1 bg-velvet/60 rounded-lg p-1">
+              <button
+                onClick={() => onMediaTypeChange('movie')}
+                className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${
+                  mediaType === 'movie' ? 'bg-gold text-ink' : 'text-screenDim hover:text-screen'
+                }`}
+              >
+                Movies
+              </button>
+              <button
+                onClick={() => onMediaTypeChange('tv')}
+                className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${
+                  mediaType === 'tv' ? 'bg-gold text-ink' : 'text-screenDim hover:text-screen'
+                }`}
+              >
+                TV Series
+              </button>
+            </div>
+          )}
+
+          <button onClick={handleSignOut} className="btn-ghost text-sm">
+            Sign Out
+          </button>
+        </div>
       </div>
     </header>
   );

@@ -4,12 +4,11 @@ import type { WatchlistItem } from '../types';
 
 interface WatchlistCardProps {
   item: WatchlistItem;
-  onRemove: (movieId: number) => void;
-  onRate: (movieId: number, rating: number) => void;
+  onRemove: (tmdbId: number) => void;
+  onRate: (tmdbId: number, rating: number) => void;
 }
 
 export default function WatchlistCard({ item, onRemove, onRate }: WatchlistCardProps) {
-  const [expanded, setExpanded] = useState(false);
   const [hovering, setHovering] = useState(false);
 
   return (
@@ -31,9 +30,14 @@ export default function WatchlistCard({ item, onRemove, onRate }: WatchlistCardP
 
       <div className="p-4 flex-1 flex flex-col">
         <div className="flex items-start justify-between gap-2">
-          <h3 className="text-lg font-semibold text-screen">{item.title}</h3>
+          <div className="flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-screen">{item.title}</h3>
+            <span className="text-[10px] font-mono uppercase tracking-wider text-screenDim bg-velvetLight px-1.5 py-0.5 rounded">
+              {item.media_type === 'tv' ? 'TV' : 'Film'}
+            </span>
+          </div>
           <button
-            onClick={() => onRemove(item.movie_id)}
+            onClick={() => onRemove(item.tmdb_id)}
             className="text-screenDim hover:text-red-400 transition-colors text-sm shrink-0"
             title="Remove from watchlist"
           >
@@ -71,7 +75,7 @@ export default function WatchlistCard({ item, onRemove, onRate }: WatchlistCardP
             {[1, 2, 3, 4, 5].map((star) => (
               <button
                 key={star}
-                onClick={() => onRate(item.movie_id, star)}
+                onClick={() => onRate(item.tmdb_id, star)}
                 className={`text-lg transition-colors ${
                   (hovering ? false : item.rating !== null && star <= item.rating)
                     ? 'text-gold'

@@ -12,9 +12,9 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
-    const { movie_id, title, overview, watchlist_id } = await req.json();
+    const { tmdb_id, title, overview, watchlist_id } = await req.json();
 
-    if (!movie_id || !title || !watchlist_id) {
+    if (!tmdb_id || !title || !watchlist_id) {
       return new Response(
         JSON.stringify({ error: "Missing required fields" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -29,13 +29,11 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    // Get the user's top-rated watchlist movies for personalization
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Get the user ID from the auth header
     const authHeader = req.headers.get("Authorization");
     if (!authHeader) {
       return new Response(
@@ -58,25 +56,24 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    // Get top 3 rated movies from the user's watchlist (excluding the current movie)
     const { data: topMovies } = await supabase
       .from("watchlist")
       .select("title, rating")
       .eq("user_id", userId)
-      .neq("movie_id", movie_id)
+      .neq("tmdb_id", tmdb_id)
       .not("rating", "is", null)
       .order("rating", { ascending: false })
       .limit(3);
 
     const favorites = topMovies?.map((m) => m.title) || [];
 
-    const systemPrompt = `You are a concise movie recommendation writer. Write a single short paragraph (2-3 sentences max, under 60 words) explaining why the user will enjoy this movie. Be specific to the movie's plot and tone. Do not use generic phrases like "you'll love this." Write in second person. Do not use quotes or markdown.`;
+    const systemPrompt = `You are a concise movie and TV recommendation writer. Write a single short paragraph (2-3 sentences max, under 60 words) explaining why the user will enjoy this title. Be specific to its plot and tone. Do not use generic phrases like "you'll love this." Write in second person. Do not use quotes or markdown.`;
 
-    const userContent = `Movie: ${title}
+    const userContent = `Title: ${title}
 Overview: ${overview || "No overview available."}
-${favorites.length > 0 ? `User's top-rated movies: ${favorites.join(", ")}` : ""}
+${favorites.length > 0 ? `User's top-rated titles: ${favorites.join(", ")}` : ""}
 
-Write a personalized "Why you'll like this" blurb for this movie.`;
+Write a personalized "Why you'll like this" blurb.`;
 
     const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
@@ -114,7 +111,6 @@ Write a personalized "Why you'll like this" blurb for this movie.`;
       );
     }
 
-    // Cache the blurb in the database
     await supabase
       .from("watchlist")
       .update({ ai_blurb: blurb })
