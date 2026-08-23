@@ -202,7 +202,7 @@ export default function App() {
         {view === 'discover' ? (
           <>
             <div className="text-center mb-8">
-              <h2 className="font-display text-4xl tracking-wide text-screen">
+              <h2 className="font-display text-4xl tracking-wide text-[#FF9A4A] drop-shadow-[0_0_10px_rgba(255,138,61,0.55)]">
                 {searchQuery ? `Results for "${searchQuery}"` : mediaType === 'tv' ? 'Trending TV Series' : 'Trending Movies'}
               </h2>
               <p className="text-screenDim text-sm mt-2">
