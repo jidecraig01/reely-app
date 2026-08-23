@@ -4,7 +4,6 @@ import { getTrending } from './tmdb';
 import type { MediaItem, MediaType, WatchlistItem } from './types';
 import Auth from './components/Auth';
 import Header from './components/Header';
-import Logo from './components/Logo';
 import VibeSearch from './components/VibeSearch';
 import MovieCard from './components/MovieCard';
 import WatchlistCard from './components/WatchlistCard';
@@ -200,7 +199,6 @@ export default function App() {
       />
 
       <main className="relative max-w-7xl mx-auto px-4 sm:px-6 py-8 overflow-hidden">
-        <Logo className="absolute left-0 top-0 z-0" onClick={() => setView('discover')} />
         <div className="relative z-10">
         {view === 'discover' ? (
           <>

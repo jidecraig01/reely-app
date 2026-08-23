@@ -5,10 +5,7 @@ interface LogoProps {
 }
 
 export default function Logo({ size, className = '', onClick }: LogoProps) {
-  const heightClass = size ? '' : 'h-24 sm:h-28 max-w-[38vw]';
-  const style = size
-    ? { height: `${size}px` }
-    : { position: 'fixed' as const, top: 0, left: 0, zIndex: 2147483647 };
+  const heightClass = size ? '' : 'h-10 sm:h-12';
 
   return (
     <button
@@ -20,8 +17,7 @@ export default function Logo({ size, className = '', onClick }: LogoProps) {
       <img
         src="/reely-logo-watermark.webp"
         alt="REELY"
-        style={style}
-        className={`${heightClass} w-auto object-contain opacity-90 select-none reely-logo-gloss ${size ? '' : 'fixed left-0 top-0 !z-[2147483647]'}`}
+        className={`${heightClass} w-auto object-contain select-none reely-logo-gloss`}
         draggable={false}
       />
     </button>
