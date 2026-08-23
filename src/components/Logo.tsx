@@ -5,16 +5,20 @@ interface LogoProps {
   onClick?: () => void;
 }
 
-export default function Logo({ size = 40, className = '', onClick }: LogoProps) {
+export default function Logo({ className = '', onClick }: LogoProps) {
   return (
-    <div className={`flex items-center ${className}`} onClick={onClick}>
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label="REELY home"
+      className={`absolute left-0 top-0 z-0 h-full flex items-center pointer-events-auto ${className}`}
+    >
       <img
-        src="/generated-1787454506378-nodjs.png"
+        src="/reely-logo-watermark.webp"
         alt="REELY"
-        width={Math.round(size * 1.5)}
-        height={size}
-        className="hidden"
+        className="h-28 sm:h-36 w-auto object-contain opacity-90 select-none"
+        draggable={false}
       />
-    </div>
+    </button>
   );
 }
