@@ -248,7 +248,7 @@ export default function App() {
 
       <footer className="border-t border-velvetLight/30 mt-20 py-6 text-center">
         <p className="text-screenDim/60 text-xs">
-          Reelist · Movie data from TMDB · AI-powered by OpenAI
+          REELY · Movie data from TMDB · AI-powered by OpenAI
         </p>
       </footer>
     </div>

@@ -16,7 +16,7 @@ export default function Header({ view, onViewChange, watchlistCount }: HeaderPro
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-8">
           <h1 className="font-display text-3xl tracking-wide text-gold cursor-pointer" onClick={() => onViewChange('discover')}>
-            REELIST
+            REELY
           </h1>
 
           <nav className="flex gap-1">

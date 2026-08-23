@@ -1,4 +1,4 @@
-# Reelist — setup guide
+# REELY — setup guide
 
 This is a complete, working Movie Watchlist app: React + Tailwind frontend, Supabase for
 auth/database, TMDB for the movie catalog, OpenAI for mood-based search and personalized
@@ -76,7 +76,7 @@ Bolt is browser-based and doesn't accept a folder upload directly — the reliab
 through GitHub, and you don't need the command line for this either:
 
 1. Create a free account at github.com if you don't have one.
-2. Click **New repository**, name it `reelist`, keep it private or public, don't
+2. Click **New repository**, name it `reely`, keep it private or public, don't
    initialize it with a README (you already have one).
 3. On the new repo's page, click **uploading an existing file**, then drag in every file
    and folder from this project (keep the folder structure intact).
@@ -86,7 +86,7 @@ through GitHub, and you don't need the command line for this either:
 
 4. Commit the upload.
 5. In Bolt, start a new project and use **Import from URL** (or the GitHub import option),
-   pasting your repo's URL (`https://github.com/your-username/reelist`).
+   pasting your repo's URL (`https://github.com/your-username/reely`).
 6. Once imported, add your three `VITE_...` values from `.env` into Bolt's environment
    variable settings for the project (Bolt will prompt for these, or you'll find them
    under project settings).
