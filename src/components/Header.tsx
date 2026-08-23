@@ -1,5 +1,4 @@
 import { supabase } from '../supabaseClient';
-import Logo from './Logo';
 
 interface HeaderProps {
   view: 'discover' | 'watchlist';
@@ -15,9 +14,8 @@ export default function Header({ view, onViewChange, watchlistCount, mediaType, 
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-ink/90 backdrop-blur-md border-b border-velvetLight/30 overflow-hidden">
-      <Logo onClick={() => onViewChange('discover')} />
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+    <header className="sticky top-0 z-50 bg-ink/90 backdrop-blur-md border-b border-velvetLight/30">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-8">
           <nav className="flex gap-1">
             <button

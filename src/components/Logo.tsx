@@ -1,22 +1,25 @@
 interface LogoProps {
   size?: number;
-  showWordmark?: boolean;
   className?: string;
   onClick?: () => void;
 }
 
-export default function Logo({ className = '', onClick }: LogoProps) {
+export default function Logo({ size, className = '', onClick }: LogoProps) {
+  const heightClass = size ? '' : 'h-40 sm:h-56';
+  const style = size ? { height: `${size}px` } : undefined;
+
   return (
     <button
       type="button"
       onClick={onClick}
       aria-label="REELY home"
-      className={`absolute left-0 top-0 z-0 h-full flex items-center pointer-events-auto ${className}`}
+      className={`flex items-start pointer-events-auto ${className}`}
     >
       <img
         src="/reely-logo-watermark.webp"
         alt="REELY"
-        className="h-28 sm:h-36 w-auto object-contain opacity-90 select-none"
+        style={style}
+        className={`${heightClass} w-auto object-contain opacity-80 select-none`}
         draggable={false}
       />
     </button>
