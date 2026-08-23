@@ -1,4 +1,5 @@
 import { supabase } from '../supabaseClient';
+import Logo from './Logo';
 
 interface HeaderProps {
   view: 'discover' | 'watchlist';
@@ -15,9 +16,7 @@ export default function Header({ view, onViewChange, watchlistCount }: HeaderPro
     <header className="sticky top-0 z-50 bg-ink/90 backdrop-blur-md border-b border-velvetLight/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-8">
-          <h1 className="font-display text-3xl tracking-wide text-gold cursor-pointer" onClick={() => onViewChange('discover')}>
-            REELY
-          </h1>
+          <Logo size={36} onClick={() => onViewChange('discover')} />
 
           <nav className="flex gap-1">
             <button

@@ -7,6 +7,7 @@ import Header from './components/Header';
 import VibeSearch from './components/VibeSearch';
 import MovieCard from './components/MovieCard';
 import WatchlistCard from './components/WatchlistCard';
+import CinematicBackground from './components/CinematicBackground';
 
 type View = 'discover' | 'watchlist';
 
@@ -154,18 +155,28 @@ export default function App() {
 
   if (session === null) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-screenDim">Loading...</p>
-      </div>
+      <>
+        <CinematicBackground />
+        <div className="min-h-screen flex items-center justify-center">
+          <p className="text-screenDim">Loading...</p>
+        </div>
+      </>
     );
   }
 
   if (!session) {
-    return <Auth />;
+    return (
+      <>
+        <CinematicBackground />
+        <Auth />
+      </>
+    );
   }
 
   return (
-    <div className="min-h-screen">
+    <>
+      <CinematicBackground />
+      <div className="min-h-screen">
       <Header view={view} onViewChange={setView} watchlistCount={watchlist.length} />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
@@ -251,6 +262,7 @@ export default function App() {
           REELY · Movie data from TMDB · AI-powered by OpenAI
         </p>
       </footer>
-    </div>
+      </div>
+    </>
   );
 }

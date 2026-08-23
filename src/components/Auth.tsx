@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { supabase } from '../supabaseClient';
+import Logo from './Logo';
 
 export default function Auth() {
   const [email, setEmail] = useState('');
@@ -32,7 +33,10 @@ export default function Auth() {
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-10">
-          <h1 className="font-display text-6xl tracking-wide text-gold">REELY</h1>
+          <div className="flex justify-center mb-4">
+            <Logo size={72} showWordmark={false} />
+          </div>
+          <h1 className="font-display text-6xl tracking-[0.15em] text-screen">REELY</h1>
           <p className="text-screenDim mt-2 text-sm">Your movie watchlist, sorted by mood.</p>
         </div>
 
