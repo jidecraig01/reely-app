@@ -48,16 +48,18 @@ export default function Header({ view, onViewChange, watchlistCount, mediaType, 
               <button
                 onClick={() => onMediaTypeChange('movie')}
                 className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${
-                  mediaType === 'movie' ? 'bg-gold text-ink' : 'text-screenDim hover:text-screen'
+                  mediaType === 'movie' ? 'text-white' : 'text-screenDim hover:text-screen'
                 }`}
+                style={mediaType === 'movie' ? { background: 'linear-gradient(135deg, #FF9A4A 0%, #FF7A00 50%, #E66800 100%)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.25), 0 0 10px rgba(255,122,0,0.3)' } : undefined}
               >
                 Movies
               </button>
               <button
                 onClick={() => onMediaTypeChange('tv')}
                 className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${
-                  mediaType === 'tv' ? 'bg-gold text-ink' : 'text-screenDim hover:text-screen'
+                  mediaType === 'tv' ? 'text-white' : 'text-screenDim hover:text-screen'
                 }`}
+                style={mediaType === 'tv' ? { background: 'linear-gradient(135deg, #FF9A4A 0%, #FF7A00 50%, #E66800 100%)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.25), 0 0 10px rgba(255,122,0,0.3)' } : undefined}
               >
                 TV Series
               </button>

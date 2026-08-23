@@ -9,6 +9,7 @@ export default {
         velvetLight: "#1F263C",
         velvetLighter: "#2A314A",
         gold: "#E8B54D",
+        neon: "#FF7A00",
         screen: "#F5F3EC",
         screenDim: "#9CA0B4",
         plum: "#8B6F9E",

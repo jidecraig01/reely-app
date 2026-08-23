@@ -5,7 +5,7 @@ interface LogoProps {
 }
 
 export default function Logo({ size, className = '', onClick }: LogoProps) {
-  const heightClass = size ? '' : 'h-40 sm:h-56';
+  const heightClass = size ? '' : 'h-32 sm:h-44';
   const style = size ? { height: `${size}px` } : undefined;
 
   return (
@@ -19,7 +19,7 @@ export default function Logo({ size, className = '', onClick }: LogoProps) {
         src="/reely-logo-watermark.webp"
         alt="REELY"
         style={style}
-        className={`${heightClass} w-auto object-contain opacity-80 select-none`}
+        className={`${heightClass} w-auto object-contain opacity-90 select-none reely-logo-gloss`}
         draggable={false}
       />
     </button>

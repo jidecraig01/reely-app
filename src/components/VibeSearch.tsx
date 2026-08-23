@@ -105,7 +105,7 @@ export default function VibeSearch({ onResults, onLoading, mediaType }: VibeSear
           <button
             key={mood}
             onClick={() => handleQuickSearch(mood)}
-            className="text-xs text-screenDim bg-velvet/60 border border-velvetLighter/50 rounded-full px-3 py-1.5 hover:border-gold/40 hover:text-screen transition-colors"
+            className="text-xs text-screenDim bg-velvet/60 border border-velvetLighter/50 rounded-full px-3 py-1.5 hover:border-neon/50 hover:text-screen transition-colors"
           >
             {mood}
           </button>
