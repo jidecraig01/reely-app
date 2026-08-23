@@ -92,7 +92,8 @@
 }
 
 .reely-logo-gloss {
-  filter: brightness(1.18) contrast(1.12) saturate(1.25) drop-shadow(0 0 6px rgba(255, 138, 61, 0.35));
+  filter: brightness(1.18) contrast(1.12) saturate(1.25);
+  mix-blend-mode: screen;
 }
 
 /* Custom scrollbar */
