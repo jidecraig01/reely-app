@@ -6,7 +6,9 @@ interface LogoProps {
 
 export default function Logo({ size, className = '', onClick }: LogoProps) {
   const heightClass = size ? '' : 'h-32 sm:h-44';
-  const style = size ? { height: `${size}px` } : undefined;
+  const style = size
+    ? { height: `${size}px` }
+    : { position: 'fixed' as const, top: 0, left: 0, zIndex: 2147483647 };
 
   return (
     <button
