@@ -1,5 +1,4 @@
 import { supabase } from '../supabaseClient';
-import Logo from './Logo';
 
 interface HeaderProps {
   view: 'discover' | 'watchlist';
@@ -15,9 +14,17 @@ export default function Header({ view, onViewChange, watchlistCount, mediaType, 
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-ink/90 backdrop-blur-md border-b border-velvetLight/30">
+    <header
+      className="sticky top-0 z-50 bg-ink/90 backdrop-blur-md border-b border-velvetLight/30 bg-cover bg-center"
+      style={{ backgroundImage: "url('/magnific_a-modern-website-header-b_vQqYpIMa47.png')" }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 flex items-center justify-between bg-transparent text-screen">
-        <Logo onClick={() => onViewChange('discover')} className="shrink-0" />
+        <button
+          type="button"
+          onClick={() => onViewChange('discover')}
+          aria-label="REELY home"
+          className="w-40 sm:w-64 shrink-0 self-stretch"
+        />
         <div className="flex flex-col items-end gap-2">
           <button onClick={handleSignOut} className="btn-ghost text-sm">
             Sign Out
