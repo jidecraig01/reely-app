@@ -15,8 +15,12 @@ export default function Header({ view, onViewChange, watchlistCount, mediaType, 
 
   return (
     <header className="sticky top-0 z-50 bg-ink/90 backdrop-blur-md border-b border-velvetLight/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-end">
+        <div className="flex flex-col items-end gap-2">
+          <button onClick={handleSignOut} className="btn-ghost text-sm">
+            Sign Out
+          </button>
+
           <nav className="flex gap-1">
             <button
               onClick={() => onViewChange('discover')}
@@ -40,9 +44,7 @@ export default function Header({ view, onViewChange, watchlistCount, mediaType, 
               )}
             </button>
           </nav>
-        </div>
 
-        <div className="flex items-center gap-4">
           {view === 'discover' && (
             <div className="flex gap-1 bg-velvet/60 rounded-lg p-1">
               <button
@@ -65,10 +67,6 @@ export default function Header({ view, onViewChange, watchlistCount, mediaType, 
               </button>
             </div>
           )}
-
-          <button onClick={handleSignOut} className="btn-ghost text-sm">
-            Sign Out
-          </button>
         </div>
       </div>
     </header>
