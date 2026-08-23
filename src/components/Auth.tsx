@@ -30,11 +30,11 @@ export default function Auth() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-start justify-center px-4 pt-10 sm:pt-16">
       <div className="w-full max-w-md">
         <div className="text-center mb-10">
           <div className="flex justify-center mb-4">
-            <Logo size={180} />
+            <Logo size={288} />
           </div>
           <p className="text-screenDim mt-2 text-sm">Your movie watchlist, sorted by mood.</p>
         </div>
