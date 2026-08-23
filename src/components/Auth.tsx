@@ -34,9 +34,8 @@ export default function Auth() {
       <div className="w-full max-w-md">
         <div className="text-center mb-10">
           <div className="flex justify-center mb-4">
-            <Logo size={72} showWordmark={false} />
+            <Logo size={180} />
           </div>
-          <h1 className="font-display text-6xl tracking-[0.15em] text-screen">REELY</h1>
           <p className="text-screenDim mt-2 text-sm">Your movie watchlist, sorted by mood.</p>
         </div>
 
