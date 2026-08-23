@@ -5,14 +5,14 @@ interface LogoProps {
 }
 
 export default function Logo({ size, className = '', onClick }: LogoProps) {
-  const heightClass = size ? '' : 'h-10 sm:h-12';
+  const heightClass = size ? '' : 'h-16 sm:h-20';
 
   return (
     <button
       type="button"
       onClick={onClick}
       aria-label="REELY home"
-      className={`flex items-start pointer-events-auto ${className}`}
+      className={`flex items-center pointer-events-auto bg-ink rounded-lg ${className}`}
     >
       <img
         src="/reely-logo-watermark.webp"
